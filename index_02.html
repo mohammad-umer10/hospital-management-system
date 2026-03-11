@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Kans 🏥 | Hospital Management System</title>
+        <link rel="stylesheet" href="src/output.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    </head>
+    <body class="font-[inter,sans-serif]">
+        <div class="grid">
+            <div class="flex bg-[#285430] items-center justify-between h-14 px-4 md:px-16 rounded-t-2xl">
+                <!-- mobile layout -->
+                <p class="md:hidden"><svg width="20" height="20" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 1H6V6L1 6V10H6V15H10V10H15V6L10 6V1Z" fill="#C9DACA"></path>
+                </svg></p>
+                <div class="flex gap-2 md:hidden">
+                    <div class="flex flex-col items-center text-[#ffffff] leading-4">
+                        <a href="" class="text-[12px] font-extrabold">Marvin McKinney</a>
+                        <a href="" class="text-xs font-normal">Admin</a>
+                    </div>
+                    <button class="bg-[#396241] text-[#ffffff] px-2 py-1 rounded-lg">M</button>
+                </div>
+                <button id="menuBtn" class="text-white text-2xl md:hidden">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <!-- end mobile layout -->
+                <div class="md:flex items-center space-x-8 text-white text-[14px] font-semibold hidden">
+                    <p><svg width="20" height="20" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 1H6V6L1 6V10H6V15H10V10H15V6L10 6V1Z" fill="#C9DACA"></path>
+                    </svg></p>
+                    <a href="" class="text-[#285430] bg-[#FFFFFF] px-6 py-4 -mb-4 rounded-t-xl">Users</a>
+                    <a href="">Patients</a>
+                    <a href="">hospitals</a>
+                    <a href="">Notice</a>
+                    <a href="">Help Center</a>
+                </div>
+                <div class="md:flex items-center space-x-6 text-white hidden">
+                    <p><svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="5" y="5" width="6.5" height="6.5" rx="1.5" fill="#ffffff" />
+                        <rect x="12.5" y="5" width="6.5" height="6.5" rx="1.5" fill="#ffffff" fill-opacity="0.4" />
+                        <rect x="5" y="12.5" width="6.5" height="6.5" rx="1.5" fill="#ffffff" fill-opacity="0.4" />
+                        <rect x="12.5" y="12.5" width="6.5" height="6.5" rx="1.5" fill="#ffffff" fill-opacity="0.4" />
+                    </svg></p>
+                    <p><svg width="38" height="38" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="5" y="14" width="2.5" height="5" rx="1.25" fill="#ffffff" />
+                        <rect x="9" y="11" width="2.5" height="8" rx="1.25" fill="#ffffff" />
+                        <rect x="13" y="7" width="2.5" height="12" rx="1.25" fill="#ffffff" fill-opacity="0.5" /> 
+                        <rect x="17" y="12" width="2.5" height="7" rx="1.25" fill="#ffffff" />
+                    </svg></p>
+                    <p><svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 5H17.5C18.6 5 19.5 5.9 19.5 7V12C19.5 13.1 18.6 14 17.5 14H15.5L13 16.5V14H10C8.9 14 8 13.1 8 12V7C8 5.9 8.9 5 10 5Z" fill="#ffffff" />
+                        <path d="M6.5 9H13.5C14.3 9 15 9.7 15 10.5V15.5C15 16.3 14.3 17 13.5 17H11.5L9.5 19V17H6.5C5.7 17 5 16.3 5 15.5V10.5C5 9.7 5.7 9 6.5 9Z" fill="#69876E" />
+                        <rect x="7" y="12" width="4" height="0.8" rx="0.4" fill="#285430" fill-opacity="0.6" />
+                        <rect x="7" y="14" width="2.5" height="0.8" rx="0.4" fill="#285430" fill-opacity="0.6" />
+                    </svg></p>
+                    <div class="flex flex-col items-center leading-4">
+                        <a href="" class="text-[12px] font-extrabold">Marvin McKinney</a>
+                        <a href="" class="text-xs font-normal pl-17">Admin</a>
+                    </div>
+                    <button class="bg-[#396241] px-2 py-1 rounded-lg">M</button>
+                </div>
+            </div>
+            <!-- mobileMenu -->
+            <div id="mobileMenu" class="flex flex-col bg-[#285430] md:hidden">
+                <button onclick="toggleMenu('users')" class="p-4 text-[#ffffff] border-b border-[#C9C9C9] text-left font-medium">
+                    Users <i class="fa-solid fa-angle-down"></i>
+                </button>
+                <div id="users" class="hidden pl-6 text-[#ffffff] bg-emerald-700 border-b border-[#C9C9C9]">
+                    <p class="font-medium px-2 py-1"><a href="index.html">Docter</a></p>
+                    <p class="font-medium px-2 py-1"><a href="index_02.html">Add a new doctor</a></p>
+                </div>
+                <button onclick="toggleMenu('patients')" class="p-4 text-[#ffffff] border-b border-[#C9C9C9] text-left font-medium">
+                    Patients <i class="fa-solid fa-angle-down"></i>
+                </button>
+                <div id="patients" class="hidden pl-6 text-[#ffffff] bg-emerald-700 border-b border-[#C9C9C9]">
+                    <p class="font-medium px-2 py-1">Patient list</p>
+                    <p class="font-medium px-2 py-1">Add patient</p>
+                </div>
+                <button onclick="toggleMenu('hospitals')" class="p-4 text-[#ffffff] border-b border-[#C9C9C9] text-left font-medium">
+                    Hospitals <i class="fa-solid fa-angle-down"></i>
+                </button>
+                <div id="hospitals" class="hidden pl-6 text-[#ffffff] bg-emerald-700 border-b border-[#C9C9C9]">
+                    <p class="font-medium px-2 py-1">Hospital list</p>
+                </div>
+                <button onclick="toggleMenu('Notice')" class="p-4 text-[#ffffff] border-b border-[#C9C9C9] text-left font-medium">
+                    Notice <i class="fa-solid fa-angle-down"></i>
+                </button>
+                <div id="Notice" class="hidden pl-6 text-[#ffffff] bg-emerald-700 border-b border-[#C9C9C9]">
+                    <p class="font-medium px-2 py-1">Notice you</p>
+                </div>
+                <button onclick="toggleMenu('help center')" class="p-4 text-[#ffffff] border-b border-[#C9C9C9] text-left font-medium">
+                    Help Center <i class="fa-solid fa-angle-down"></i>
+                </button>
+                <div id="help center" class="hidden pl-6 text-[#ffffff] bg-emerald-700 border-b border-[#C9C9C9]">
+                    <p class="font-medium px-2 py-1">Contact us</p>
+                </div>
+            </div>
+            <div class="md:flex items-center bg-[#FFFFFF] px-36 text-[#C9C9C9] space-x-6 h-18 font-medium hidden">
+                <p>Docter</p>
+                <p><svg width="10" height="10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12,22 C6.477,22 2,17.523 2,12 C2,6.477 6.477,2 12,2 C17.523,2 22,6.477 22,12 C22,17.523 17.523,22 12,22 Z" fill="#E9E9E9"/>
+                </svg></p>
+                <p>Add a new doctor</p>
+            </div>
+            <div class="bg-[#FAFAFA] px-4 md:px-36 pt-8 pb-8 md:w-full w-80">
+                <div class="bg-[#FFFFFF] px-6 md:px-20 pt-6 pb-8 rounded-xl">
+                    <div class="flex flex-wrap md:justify-between justify-start pb-9 font-semibold">
+                        <p class="text-[16px] text-[#69945A] border-b-2 border-b-[#5F8D4E] md:pr-10 pr-14"><span class="text-[24px] pr-2">1</span>Basic information</p>
+                        <p class="text-[#C9C9C9] border-b-2 border-b-[#C9C9C9] md:pr-10 pr-26"><span class="pr-2 text-[24px]">2</span>Enter Details</p>
+                        <p class="text-[#C9C9C9] border-b-2 border-b-[#C9C9C9] md:pr-10 pr-21"><span class="text-[24px] pr-2">3</span>select Services</p>
+                        <p class="text-[#C9C9C9] border-b-2 border-b-[#C9C9C9] md:pr-10 pr-14"><span class="text-[24px] pr-2">4</span>Review and Submit</p>
+                    </div>
+                    <div class="md:justify-between justify-center">
+                        <div class="md:pb-8 pb-4">
+                            <p class="text-[18px] font-semibold">Basic information</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pb-4">
+                            <div class="flex flex-col">
+                                <label class="pb-2 text-[#181C32]">User type</label>
+                                <div class="relative w-full">
+                                    <input type="text" class="border-2 border-[#CACACA] p-2 px-4 rounded-lg text-sm w-full" placeholder="Select user type">
+                                    <svg class="absolute top-3.5 right-4 w-3 h-3 text-[#181C32]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor">
+                                        <path d="M10,20 L90,20 L50,90 Z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="pb-2 text-[#181C32]">Gender</label>
+                                <input type="text" class="border-2 border-[#CACACA] p-2 px-4 rounded-lg text-sm w-full" placeholder="Select gender">
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="pb-2 text-[#181C32]">First name</label>
+                                <div class="relative w-full">
+                                    <input type="text" class="border-2 border-[#CACACA] p-2 px-4 rounded-lg text-sm w-full" placeholder="Your first name">
+                                    <svg class="absolute top-3.5 right-4 w-3 h-3 text-[#181C32]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor">
+                                        <path d="M10,20 L90,20 L50,90 Z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="pb-2 text-[#181C32]">Designation</label>
+                                <input type="text" class="border-2 border-[#CACACA] p-2 px-4 rounded-lg text-sm w-full" placeholder="Your designation">
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="pb-2 text-[#181C32]">Last name</label>
+                                <input type="text" class="border-2 border-[#CACACA] p-2 px-4 rounded-lg text-sm w-full" placeholder="Your last name">
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="pb-2 text-[#181C32]">Date of birth</label>
+                                <input class="border-2 border-[#CACACA] p-2 rounded-lg text-sm w-full" placeholder="Select your date of birth">
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="pb-2 text-[#181C32]">Email address</label>
+                                <input class="border-2 border-[#CACACA] p-2 rounded-lg text-sm w-full" placeholder="Your email address">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pl-164">
+                        <button class="flex items-center bg-[#5F8D4E] px-4 py-2 rounded-lg text-[#FFFFFF] text-[14px] font-semibold">NEXT STEP</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header js -->
+            <script>
+                const menuBtn = document.getElementById("menuBtn");
+                const mobileMenu = document.getElementById("mobileMenu");
+                window.addEventListener("load", function () {
+                    mobileMenu.classList.add("hidden");
+                });
+                menuBtn.addEventListener("click", function(){
+                    mobileMenu.classList.toggle("hidden");
+                });
+                function toggleMenu(id){
+                    document.getElementById(id).classList.toggle("hidden");
+                }
+            </script>
+            <!-- end header js -->
+    </body>
+</html>

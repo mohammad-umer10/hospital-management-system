@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Kans 🏥 | Hospital Management System</title>
+        <link rel="stylesheet" href="src/output.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    </head>
+    <body class="font-[inter,sans-serif]">
+        <div class="grid">
+            <div class="flex bg-[#285430] items-center justify-between h-14 px-4 md:px-16 rounded-t-2xl">
+                <!-- mobile layout -->
+                <p class="md:hidden"><svg width="20" height="20" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 1H6V6L1 6V10H6V15H10V10H15V6L10 6V1Z" fill="#C9DACA"></path>
+                </svg></p>
+                <div class="flex gap-2 md:hidden">
+                    <div class="flex flex-col items-center text-[#ffffff] leading-4">
+                        <a href="" class="text-[12px] font-extrabold">Marvin McKinney</a>
+                        <a href="" class="text-xs font-normal">Admin</a>
+                    </div>
+                    <button class="bg-[#396241] text-[#ffffff] px-2 py-1 rounded-lg">M</button>
+                </div>
+                <button id="menuBtn" class="text-white text-2xl md:hidden">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <!-- end mobile layout -->
+                <div class="md:flex items-center space-x-8 text-white text-[14px] font-semibold hidden">
+                    <p><svg width="20" height="20" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 1H6V6L1 6V10H6V15H10V10H15V6L10 6V1Z" fill="#C9DACA"></path>
+                    </svg></p>
+                    <a href="" class="text-[#285430] bg-[#FFFFFF] px-6 py-4 -mb-4 rounded-t-xl">Users</a>
+                    <a href="">Patients</a>
+                    <a href="">hospitals</a>
+                    <a href="">Notice</a>
+                    <a href="">Help Center</a>
+                </div>
+                <div class="md:flex items-center space-x-6 text-white hidden">
+                    <p><svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="5" y="5" width="6.5" height="6.5" rx="1.5" fill="#ffffff" />
+                        <rect x="12.5" y="5" width="6.5" height="6.5" rx="1.5" fill="#ffffff" fill-opacity="0.4" />
+                        <rect x="5" y="12.5" width="6.5" height="6.5" rx="1.5" fill="#ffffff" fill-opacity="0.4" />
+                        <rect x="12.5" y="12.5" width="6.5" height="6.5" rx="1.5" fill="#ffffff" fill-opacity="0.4" />
+                    </svg></p>
+                    <p><svg width="38" height="38" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="5" y="14" width="2.5" height="5" rx="1.25" fill="#ffffff" />
+                        <rect x="9" y="11" width="2.5" height="8" rx="1.25" fill="#ffffff" />
+                        <rect x="13" y="7" width="2.5" height="12" rx="1.25" fill="#ffffff" fill-opacity="0.5" /> 
+                        <rect x="17" y="12" width="2.5" height="7" rx="1.25" fill="#ffffff" />
+                    </svg></p>
+                    <p><svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 5H17.5C18.6 5 19.5 5.9 19.5 7V12C19.5 13.1 18.6 14 17.5 14H15.5L13 16.5V14H10C8.9 14 8 13.1 8 12V7C8 5.9 8.9 5 10 5Z" fill="#ffffff" />
+                        <path d="M6.5 9H13.5C14.3 9 15 9.7 15 10.5V15.5C15 16.3 14.3 17 13.5 17H11.5L9.5 19V17H6.5C5.7 17 5 16.3 5 15.5V10.5C5 9.7 5.7 9 6.5 9Z" fill="#69876E" />
+                        <rect x="7" y="12" width="4" height="0.8" rx="0.4" fill="#285430" fill-opacity="0.6" />
+                        <rect x="7" y="14" width="2.5" height="0.8" rx="0.4" fill="#285430" fill-opacity="0.6" />
+                    </svg></p>
+                    <div class="flex flex-col items-center leading-4">
+                        <a href="" class="text-[12px] font-extrabold">Marvin McKinney</a>
+                        <a href="" class="text-xs font-normal pl-17">Admin</a>
+                    </div>
+                    <button class="bg-[#396241] px-2 py-1 rounded-lg">M</button>
+                </div>
+            </div>
+            <!-- mobileMenu -->
+            <div id="mobileMenu" class="flex flex-col bg-[#285430] md:hidden">
+                <button onclick="toggleMenu('users')" class="p-4 text-[#ffffff] border-b-2 border-[#C9C9C9] text-left font-medium">
+                    Users <i class="fa-solid fa-angle-down"></i>
+                </button>
+                <div id="users" class="hidden pl-6 text-[#ffffff] bg-emerald-700 border-b border-[#C9C9C9]">
+                    <p class="font-medium px-2 py-1"><a href="index.html">Docter</a></p>
+                    <p class="font-medium px-2 py-1">Adminstration</p>
+                    <p class="font-medium px-2 py-1">Accounts</p>
+                </div>
+                <button onclick="toggleMenu('patients')" class="p-4 text-[#ffffff] border-b-2 border-[#C9C9C9] text-left font-medium">
+                    Patients <i class="fa-solid fa-angle-down"></i>
+                </button>
+                <div id="patients" class="hidden pl-6 text-[#ffffff] bg-emerald-700 border-b border-[#C9C9C9]">
+                    <p class="font-medium p-2">Patient list</p>
+                    <p class="font-medium p-2">Add patient</p>
+                </div>
+                <button onclick="toggleMenu('hospitals')" class="p-4 text-[#ffffff] border-b-2 border-[#C9C9C9] text-left font-medium">
+                    Hospitals <i class="fa-solid fa-angle-down"></i>
+                </button>
+                <div id="hospitals" class="hidden pl-6 text-[#ffffff] bg-emerald-700 border-b border-[#C9C9C9]">
+                    <p class="font-medium p-2">Hospital list</p>
+                </div>
+                <button onclick="toggleMenu('Notice')" class="p-4 text-[#ffffff] border-b-2 border-[#C9C9C9] text-left font-medium">
+                    Notice <i class="fa-solid fa-angle-down"></i>
+                </button>
+                <div id="Notice" class="hidden pl-6 text-[#ffffff] bg-emerald-700 border-b border-[#C9C9C9]">
+                    <p class="font-medium p-2">Notice you</p>
+                </div>
+                <button onclick="toggleMenu('helpcenter')" class="p-4 text-[#ffffff] border-b-2 border-[#C9C9C9] text-left font-medium">
+                    Help Center <i class="fa-solid fa-angle-down"></i>
+                </button>
+                <div id="helpcenter" class="hidden pl-6 text-[#ffffff] bg-emerald-700 border-b border-[#C9C9C9]">
+                    <p class="font-medium p-2">Contact us</p>
+                </div>
+            </div>
+            <!-- end mobileMenu -->
+            <div class="md:flex items-center bg-[#FFFFFF] px-4 md:px-16 text-[#C9C9C9] space-x-4 md:space-x-6 h-18 font-semibold text-[12px] hidden">
+                <p><button class="bg-[#F4FFF3] text-[#608E4F] px-4 md:px-6 py-2.5 rounded-lg">Docter</button></p>
+                <p>Adminstration</p>
+                <p>Accounts</p>
+                <p><svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="6" y="9.5" width="5" height="5" rx="1.8" fill="#E5E5E5" />
+                    <rect x="13" y="9.5" width="5" height="5" rx="1.8" fill="#E5E5E5" />
+                </svg></p>
+            </div>
+            <div class="bg-[#FAFAFA] px-4 md:px-16 pt-8 pb-8">
+                <div class="bg-[#FFFFFF] px-2 md:px-6 pt-4 rounded-xl">
+                    <div class="flex justify-between md:pb-9 font-semibold">
+                        <div>
+                            <p class="text-[16px]">List of doctors</p>
+                            <p class="text-xs text-[#B8B8C5] font-normal">345 available doctors</p>
+                        </div>
+                        <div>
+                            <a href="index_02.html"><button class="flex items-center bg-[#5F8D4E] px-2 py-1 rounded-lg text-[#FFFFFF] text-[12px] font-medium">
+                                <svg class="pr-1" width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.5 13C7.18 13 4.5 15.68 4.5 19H16.5C16.5 15.68 13.82 13 10.5 13Z" fill="white" />
+                                    <circle cx="10.5" cy="8.5" r="3.5" fill="white" fill-opacity="0.5" />
+                                    <path d="M17.5 7.5H21.5M19.5 5.5V9.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-opacity="0.6" />
+                                </svg>Add new doctor</button>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Toggle Buttons for mobile -->
+                    <div class="flex justify-between md:hidden py-6">
+                        <button id="tableViewBtn" class="flex items-center bg-[#5F8D4E] px-2 py-2 rounded-lg text-[#FFFFFF] text-[12px] font-medium">
+                            Table View
+                        </button>
+                        <button id="cardViewBtn" class="flex items-center bg-[#5F8D4E] px-2 py-2 rounded-lg text-[#FFFFFF] text-[12px] font-medium">
+                            Card View
+                        </button>
+                    </div>
+                    <!-- end Toggle Buttons for mobile -->
+                    <div id="tableContainer" class="hidden md:block md:w-full w-[280px] overflow-x-auto">
+                        <table class="w-full border-collapse">
+                            <thead class="bg-[#FAFAFA] h-10 rounded-lg">
+                                <tr class="text-left">
+                                    <th class="px-4 py-2 text-[#B5B5C3] text-[12px]">Name</th>
+                                    <th class="px-4 py-2 text-[#B5B5C3] text-[12px]">ID</th>
+                                    <th class="px-4 py-2 text-[#B5B5C3] text-[12px]">Email</th>
+                                    <th class="px-4 py-2 text-[#B5B5C3] text-[12px]">Phone number</th>
+                                    <th class="px-4 py-2 text-[#B5B5C3] text-[12px]">Date added</th>
+                                    <th class="px-4 py-2 text-[#B5B5C3] text-[12px]">STATUS</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-[#485061]">
+                                <tr class="text-[13px] font-medium whitespace-nowrap">
+                                    <td class="px-4 py-2">
+                                        <div class="flex items-center space-x-2">
+                                            <img class="w-12 h-12 rounded-lg object-cover" src="p-1.png">
+                                            <div class="flex flex-col">
+                                                <a href="">Brooklyn Simmons</a>
+                                                <span class="text-[11px] text-[#B5B5C3] font-medium">Dermatologists</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-2">87364523</td>
+                                    <td class="px-4 py-2">brooklyns@gmail.com</td>
+                                    <td class="px-4 py-2">(603) 555-0123</td>
+                                    <td class="px-4 py-2">
+                                        <div class="flex flex-col">
+                                        <span>21/12/2022</span>
+                                        <span class="text-[11px] text-[#B5B5C3] font-medium">10:40 PM</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-2"><button class="px-2 py-1 text-[#759E66] bg-[#F4FFF3] rounded-lg">Approved</button></td>
+                                    <td class="px-4 py-2"><button class="bg-[#FAFAFA] px-2 py-1 rounded-lg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z" fill="#000000"/>
+                                    </svg></button></td>
+                                </tr>
+                                <tr class="text-[13px] font-medium whitespace-nowrap">
+                                    <td class="px-4 py-2">
+                                        <div class="flex items-center space-x-2">
+                                            <img class="w-12 h-12 rounded-lg object-cover" src="p-2.png">
+                                            <div class="flex flex-col">
+                                                <a href="">Kristin Watson</a>
+                                                <span class="text-[11px] text-[#B5B5C3] font-medium">Infectious disease</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-2">93874563</td>
+                                    <td class="px-4 py-2">Kristinw@gmail.com</td>
+                                    <td class="px-4 py-2">(219) 555-0114</td>
+                                    <td class="px-4 py-2">
+                                        <div class="flex flex-col">
+                                        <span>22/12/2022</span>
+                                        <span class="text-[11px] text-[#B5B5C3] font-medium">05:20 PM</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-2"><button class="px-2 py-1 text-[#F87482] bg-[#FFE2E5] rounded-lg">Declined</button></td>
+                                    <td class="px-4 py-2"><button class="bg-[#FAFAFA] px-2 py-1 rounded-lg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z" fill="#000000"/>
+                                    </svg></button></td>
+                                </tr>
+                                <tr class="text-[13px] font-medium whitespace-nowrap">
+                                    <td class="px-4 py-2">
+                                        <div class="flex items-center space-x-2">
+                                            <img class="w-12 h-12 rounded-lg object-cover" src="p-3.png">
+                                            <div class="flex flex-col">
+                                                <a href="">Jacob Jones</a>
+                                                <span class="text-[11px] text-[#B5B5C3] font-medium">Ophthalmologists</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-2">23847569</td>
+                                    <td class="px-4 py-2">Jacbj@gmail.com</td>
+                                    <td class="px-4 py-2">(319) 555-0115</td>
+                                    <td class="px-4 py-2">
+                                        <div class="flex flex-col">
+                                        <span>23/12/2022</span>
+                                        <span class="text-[11px] text-[#B5B5C3] font-medium">12:40 PM</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-2"><button class="px-2 py-1 text-[#759E66] bg-[#F4FFF3] rounded-lg">Approved</button></td>
+                                    <td class="px-4 py-2"><button class="bg-[#FAFAFA] px-2 py-1 rounded-lg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z" fill="#000000"/>
+                                    </svg></button></td>
+                                </tr>
+                                <tr class="text-[13px] font-medium whitespace-nowrap">
+                                    <td class="px-4 py-2">
+                                        <div class="flex items-center space-x-2">
+                                            <img class="w-12 h-12 rounded-lg object-cover" src="p-4.png">
+                                            <div class="flex flex-col">
+                                                <a href="">Cody Fisher</a>
+                                                <span class="text-[11px] text-[#B5B5C3] font-medium">Cardiologists</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-2">39485632</td>
+                                    <td class="px-4 py-2">odyf@gmail.com</td>
+                                    <td class="px-4 py-2">(229) 555-0109</td>
+                                    <td class="px-4 py-2">
+                                        <div class="flex flex-col">
+                                        <span>24/12/2022</span>
+                                        <span class="text-[11px] text-[#B5B5C3] font-medium">03:00 PM</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-2"><button class="px-2 py-1 text-[#759E66] bg-[#F4FFF3] rounded-lg">Approved</button></td>
+                                    <td class="px-4 py-2"><button class="bg-[#FAFAFA] px-2 py-1 rounded-lg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z" fill="#000000"/>
+                                    </svg></button></td>
+                                </tr>
+                                <tr class="text-[13px] font-medium whitespace-nowrap">
+                                    <td class="px-4 py-2">
+                                        <div class="flex items-center space-x-2">
+                                            <img class="w-12 h-12 rounded-lg object-cover" src="p-1.png">
+                                            <div class="flex flex-col">
+                                                <a href="">Brooklyn Simmons</a>
+                                                <span class="text-[11px] text-[#B5B5C3] font-medium">Dermatologists</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-2">87364523</td>
+                                    <td class="px-4 py-2">brooklyns@gmail.com</td>
+                                    <td class="px-4 py-2">(603) 555-0123</td>
+                                    <td class="px-4 py-2">
+                                        <div class="flex flex-col">
+                                        <span>21/12/2022</span>
+                                        <span class="text-[11px] text-[#B5B5C3] font-medium">10:40 PM</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-2"><button class="px-2 py-1 text-[#759E66] bg-[#F4FFF3] rounded-lg">Approved</button></td>
+                                    <td class="px-4 py-2"><button class="bg-[#FAFAFA] px-2 py-1 rounded-lg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z" fill="#000000"/>
+                                    </svg></button></td>
+                                </tr>
+                                <tr class="text-[13px] font-medium whitespace-nowrap">
+                                    <td class="px-4 py-2">
+                                        <div class="flex items-center space-x-2">
+                                            <img class="w-12 h-12 rounded-lg object-cover" src="p-2.png">
+                                            <div class="flex flex-col">
+                                                <a href="">Kristin Watson</a>
+                                                <span class="text-[11px] text-[#B5B5C3] font-medium">Infectious disease</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-2">93874563</td>
+                                    <td class="px-4 py-2">Kristinw@gmail.com</td>
+                                    <td class="px-4 py-2">(219) 555-0114</td>
+                                    <td class="px-4 py-2">
+                                        <div class="flex flex-col">
+                                        <span>22/12/2022</span>
+                                        <span class="text-[11px] text-[#B5B5C3] font-medium">05:20 PM</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-2"><button class="px-2 py-1 text-[#F87482] bg-[#FFE2E5] rounded-lg">Declined</button></td>
+                                    <td class="px-4 py-2"><button class="bg-[#FAFAFA] px-2 py-1 rounded-lg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z" fill="#000000"/>
+                                    </svg></button></td>
+                                </tr>
+                                <tr class="text-[13px] font-medium whitespace-nowrap">
+                                    <td class="px-4 py-2">
+                                        <div class="flex items-center space-x-2">
+                                            <img class="w-12 h-12 rounded-lg object-cover" src="p-3.png">
+                                            <div class="flex flex-col">
+                                                <a href="">Jacob Jones</a>
+                                                <span class="text-[11px] text-[#B5B5C3] font-medium">Ophthalmologists</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-2">23847569</td>
+                                    <td class="px-4 py-2">Jacbj@gmail.com</td>
+                                    <td class="px-4 py-2">(319) 555-0115</td>
+                                    <td class="px-4 py-2">
+                                        <div class="flex flex-col">
+                                        <span>23/12/2022</span>
+                                        <span class="text-[11px] text-[#B5B5C3] font-medium">12:40 PM</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-2"><button class="px-2 py-1 text-[#759E66] bg-[#F4FFF3] rounded-lg">Approved</button></td>
+                                    <td class="px-4 py-2"><button class="bg-[#FAFAFA] px-2 py-1 rounded-lg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z" fill="#000000"/>
+                                    </svg></button></td>
+                                </tr>
+                                <tr class="text-[13px] font-medium whitespace-nowrap">
+                                    <td class="px-4 py-2">
+                                        <div class="flex items-center space-x-2">
+                                            <img class="w-12 h-12 rounded-lg object-cover" src="p-4.png">
+                                            <div class="flex flex-col">
+                                                <a href="">Cody Fisher</a>
+                                                <span class="text-[11px] text-[#B5B5C3] font-medium">Cardiologists</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-2">39485632</td>
+                                    <td class="px-4 py-2">odyf@gmail.com</td>
+                                    <td class="px-4 py-2">(229) 555-0109</td>
+                                    <td class="px-4 py-2">
+                                        <div class="flex flex-col">
+                                        <span>24/12/2022</span>
+                                        <span class="text-[11px] text-[#B5B5C3] font-medium">03:00 PM</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-2"><button class="px-2 py-1 text-[#759E66] bg-[#F4FFF3] rounded-lg">Approved</button></td>
+                                    <td class="px-4 py-2"><button class="bg-[#FAFAFA] px-2 py-1 rounded-lg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z" fill="#000000"/>
+                                    </svg></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- card moblie view -->
+                    <div id="cardContainer" class="md:hidden space-y-4">
+                        <!-- CARD 1 -->
+                        <div class="bg-white p-4 rounded-xl shadow">
+                            <div class="flex items-center space-x-3">
+                                <img class="w-12 h-12 rounded-lg" src="p-1.png">
+                                <div>
+                                    <h3 class="text-[14px] font-semibold">Brooklyn Simmons</h3>
+                                    <p class="text-[11px] text-[#B5B5C3]">Dermatologists</p>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-[13px] space-y-1">
+                                <p><span class="text-gray-400">ID:</span> 87364523</p>
+                                <p><span class="text-gray-400">Email:</span> brooklyns@gmail.com</p>
+                                <p><span class="text-gray-400">Phone:</span> (603) 555-0123</p>
+                                <p><span class="text-gray-400">Date:</span> 21/12/2022 <span class="text-[11px] text-[#B5B5C3] ml-2">10:40 PM</span></p>
+                            </div>
+                            <div class="mt-3 flex justify-between items-center">
+                                <button class="px-2 py-1 text-[#759E66] bg-[#F4FFF3] rounded-lg text-[12px]">Approved</button>
+                                <button class="bg-[#FAFAFA] px-2 py-1 rounded-lg">→</button>
+                            </div>
+                        </div>
+                        <!-- CARD 2 -->
+                        <div class="bg-white p-4 rounded-xl shadow">
+                            <div class="flex items-center space-x-3">
+                                <img class="w-12 h-12 rounded-lg" src="p-2.png">
+                                <div>
+                                    <h3 class="text-[14px] font-semibold">Kristin Watson</h3>
+                                    <p class="text-[11px] text-[#B5B5C3]">Infectious disease</p>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-[13px] space-y-1">
+                                <p><span class="text-gray-400">ID:</span> 93874563</p>
+                                <p><span class="text-gray-400">Email:</span> Kristinw@gmail.com</p>
+                                <p><span class="text-gray-400">Phone:</span> (219) 555-0114</p>
+                                <p><span class="text-gray-400">Date:</span> 22/12/2022 <span class="text-[11px] text-[#B5B5C3] ml-2">05:20 PM</span></p>
+                            </div>
+                            <div class="mt-3 flex justify-between items-center">
+                                <button class="px-2 py-1 text-[#F87482] bg-[#FFE2E5] rounded-lg text-[12px]">Declined</button>
+                                <button class="bg-[#FAFAFA] px-2 py-1 rounded-lg">→</button>
+                            </div>
+                        </div>
+                        <!-- CARD 3 -->
+                        <div class="bg-white p-4 rounded-xl shadow">
+                            <div class="flex items-center space-x-3">
+                                <img class="w-12 h-12 rounded-lg" src="p-3.png">
+                                <div>
+                                    <h3 class="text-[14px] font-semibold">Jacob Jones</h3>
+                                    <p class="text-[11px] text-[#B5B5C3]">Ophthalmologists</p>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-[13px] space-y-1">
+                                <p><span class="text-gray-400">ID:</span> 23847569</p>
+                                <p><span class="text-gray-400">Email:</span> Jacbj@gmail.com</p>
+                                <p><span class="text-gray-400">Phone:</span> (319) 555-0115</p>
+                                <p><span class="text-gray-400">Date:</span> 23/12/2022 <span class="text-[11px] text-[#B5B5C3] ml-2">12:40 PM</span></p>
+                            </div>
+                            <div class="mt-3 flex justify-between items-center">
+                                <button class="px-2 py-1 text-[#759E66] bg-[#F4FFF3] rounded-lg text-[12px]">Approved</button>
+                                <button class="bg-[#FAFAFA] px-2 py-1 rounded-lg">→</button>
+                            </div>
+                        </div>
+                        <!-- CARD 4 -->
+                        <div class="bg-white p-4 rounded-xl shadow">
+                            <div class="flex items-center space-x-3">
+                                <img class="w-12 h-12 rounded-lg" src="p-4.png">
+                                <div>
+                                    <h3 class="text-[14px] font-semibold">Cody Fisher</h3>
+                                    <p class="text-[11px] text-[#B5B5C3]">Cardiologists</p>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-[13px] space-y-1">
+                                <p><span class="text-gray-400">ID:</span> 39485632</p>
+                                <p><span class="text-gray-400">Email:</span> odyf@gmail.com</p>
+                                <p><span class="text-gray-400">Phone:</span> (229) 555-0109</p>
+                                <p><span class="text-gray-400">Date:</span> 24/12/2022 <span class="text-[11px] text-[#B5B5C3] ml-2">03:00 PM</span></p>
+                            </div>
+                            <div class="mt-3 flex justify-between items-center">
+                                <button class="px-2 py-1 text-[#759E66] bg-[#F4FFF3] rounded-lg text-[12px]">Approved</button>
+                                <button class="bg-[#FAFAFA] px-2 py-1 rounded-lg">→</button>
+                            </div>
+                        </div>
+                        <!-- CARD 5 (repeat CARD 1) -->
+                        <div class="bg-white p-4 rounded-xl shadow">
+                            <div class="flex items-center space-x-3">
+                                <img class="w-12 h-12 rounded-lg" src="p-1.png">
+                                <div>
+                                    <h3 class="text-[14px] font-semibold">Brooklyn Simmons</h3>
+                                    <p class="text-[11px] text-[#B5B5C3]">Dermatologists</p>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-[13px] space-y-1">
+                                <p><span class="text-gray-400">ID:</span> 87364523</p>
+                                <p><span class="text-gray-400">Email:</span> brooklyns@gmail.com</p>
+                                <p><span class="text-gray-400">Phone:</span> (603) 555-0123</p>
+                                <p><span class="text-gray-400">Date:</span> 21/12/2022 <span class="text-[11px] text-[#B5B5C3] ml-2">10:40 PM</span></p>
+                            </div>
+                            <div class="mt-3 flex justify-between items-center">
+                                <button class="px-2 py-1 text-[#759E66] bg-[#F4FFF3] rounded-lg text-[12px]">Approved</button>
+                                <button class="bg-[#FAFAFA] px-2 py-1 rounded-lg">→</button>
+                            </div>
+                        </div>
+                        <!-- CARD 6 (repeat CARD 2) -->
+                        <div class="bg-white p-4 rounded-xl shadow">
+                            <div class="flex items-center space-x-3">
+                                <img class="w-12 h-12 rounded-lg" src="p-2.png">
+                                <div>
+                                    <h3 class="text-[14px] font-semibold">Kristin Watson</h3>
+                                    <p class="text-[11px] text-[#B5B5C3]">Infectious disease</p>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-[13px] space-y-1">
+                                <p><span class="text-gray-400">ID:</span> 93874563</p>
+                                <p><span class="text-gray-400">Email:</span> Kristinw@gmail.com</p>
+                                <p><span class="text-gray-400">Phone:</span> (219) 555-0114</p>
+                                <p><span class="text-gray-400">Date:</span> 22/12/2022 <span class="text-[11px] text-[#B5B5C3] ml-2">05:20 PM</span></p>
+                            </div>
+                            <div class="mt-3 flex justify-between items-center">
+                                <button class="px-2 py-1 text-[#F87482] bg-[#FFE2E5] rounded-lg text-[12px]">Declined</button>
+                                <button class="bg-[#FAFAFA] px-2 py-1 rounded-lg">→</button>
+                            </div>
+                        </div>
+                        <!-- CARD 7 (repeat CARD 3) -->
+                        <div class="bg-white p-4 rounded-xl shadow">
+                            <div class="flex items-center space-x-3">
+                                <img class="w-12 h-12 rounded-lg" src="p-3.png">
+                                <div>
+                                    <h3 class="text-[14px] font-semibold">Jacob Jones</h3>
+                                    <p class="text-[11px] text-[#B5B5C3]">Ophthalmologists</p>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-[13px] space-y-1">
+                                <p><span class="text-gray-400">ID:</span> 23847569</p>
+                                <p><span class="text-gray-400">Email:</span> Jacbj@gmail.com</p>
+                                <p><span class="text-gray-400">Phone:</span> (319) 555-0115</p>
+                                <p><span class="text-gray-400">Date:</span> 23/12/2022 <span class="text-[11px] text-[#B5B5C3] ml-2">12:40 PM</span></p>
+                            </div>
+                            <div class="mt-3 flex justify-between items-center">
+                                <button class="px-2 py-1 text-[#759E66] bg-[#F4FFF3] rounded-lg text-[12px]">Approved</button>
+                                <button class="bg-[#FAFAFA] px-2 py-1 rounded-lg">→</button>
+                            </div>
+                        </div>
+                        <!-- CARD 8 (repeat CARD 4) -->
+                        <div class="bg-white p-4 rounded-xl shadow">
+                            <div class="flex items-center space-x-3">
+                                <img class="w-12 h-12 rounded-lg" src="p-4.png">
+                                <div>
+                                    <h3 class="text-[14px] font-semibold">Cody Fisher</h3>
+                                    <p class="text-[11px] text-[#B5B5C3]">Cardiologists</p>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-[13px] space-y-1">
+                                <p><span class="text-gray-400">ID:</span> 39485632</p>
+                                <p><span class="text-gray-400">Email:</span> odyf@gmail.com</p>
+                                <p><span class="text-gray-400">Phone:</span> (229) 555-0109</p>
+                                <p><span class="text-gray-400">Date:</span> 24/12/2022 <span class="text-[11px] text-[#B5B5C3] ml-2">03:00 PM</span></p>
+                            </div>
+                            <div class="mt-3 flex justify-between items-center">
+                                <button class="px-2 py-1 text-[#759E66] bg-[#F4FFF3] rounded-lg text-[12px]">Approved</button>
+                                <button class="bg-[#FAFAFA] px-2 py-1 rounded-lg">→</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- card end mobile -->
+                </div>
+            </div>
+        </div>
+        <!-- js for table and card -->
+        <script>
+            const tableBtn = document.getElementById('tableViewBtn'),
+            cardBtn = document.getElementById('cardViewBtn'),
+            table = document.getElementById('tableContainer'),
+            card = document.getElementById('cardContainer');
+            const show = view => {
+            table.classList.toggle('hidden', view !== 'table');
+            card.classList.toggle('hidden', view !== 'card');
+            localStorage.setItem('viewMode', view);
+            };
+            show(localStorage.getItem('viewMode') || 'card');
+            tableBtn.onclick = () => show('table');
+            cardBtn.onclick = () => show('card');
+        </script>
+        <!-- end js for table and card -->
+        <!-- header js -->
+        <script>
+            const menuBtn = document.getElementById("menuBtn");
+            const mobileMenu = document.getElementById("mobileMenu");
+            window.addEventListener("load", function () {
+                mobileMenu.classList.add("hidden");
+            });
+            menuBtn.addEventListener("click", function(){
+                mobileMenu.classList.toggle("hidden");
+            });
+            function toggleMenu(id){
+                document.getElementById(id).classList.toggle("hidden");
+            }
+        </script>
+        <!-- end header js -->
+    </body>
+</html>
