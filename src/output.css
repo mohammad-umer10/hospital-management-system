@@ -7,12 +7,11 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-red-800: oklch(44.4% 0.177 26.899);
     --color-emerald-700: oklch(50.8% 0.118 165.612);
     --color-gray-400: oklch(70.7% 0.022 261.325);
-    --color-gray-700: oklch(37.3% 0.034 259.733);
     --color-white: #fff;
     --spacing: 0.25rem;
+    --container-4xl: 56rem;
     --text-xs: 0.75rem;
     --text-xs--line-height: calc(1 / 0.75);
     --text-sm: 0.875rem;
@@ -191,6 +190,24 @@
   .end {
     inset-inline-end: var(--spacing);
   }
+  .-top-1 {
+    top: calc(var(--spacing) * -1);
+  }
+  .-top-5 {
+    top: calc(var(--spacing) * -5);
+  }
+  .-top-6 {
+    top: calc(var(--spacing) * -6);
+  }
+  .-top-6\.5 {
+    top: calc(var(--spacing) * -6.5);
+  }
+  .-top-7 {
+    top: calc(var(--spacing) * -7);
+  }
+  .top-1 {
+    top: calc(var(--spacing) * 1);
+  }
   .top-3 {
     top: calc(var(--spacing) * 3);
   }
@@ -200,8 +217,14 @@
   .right-4 {
     right: calc(var(--spacing) * 4);
   }
+  .mx-auto {
+    margin-inline: auto;
+  }
   .mt-3 {
     margin-top: calc(var(--spacing) * 3);
+  }
+  .mt-4 {
+    margin-top: calc(var(--spacing) * 4);
   }
   .-mb-4 {
     margin-bottom: calc(var(--spacing) * -4);
@@ -242,41 +265,11 @@
   .w-12 {
     width: calc(var(--spacing) * 12);
   }
-  .w-80 {
-    width: calc(var(--spacing) * 80);
-  }
-  .w-\[6\] {
-    width: 6;
-  }
-  .w-\[20px\] {
-    width: 20px;
-  }
-  .w-\[64px\] {
-    width: 64px;
-  }
-  .w-\[80px\] {
-    width: 80px;
-  }
-  .w-\[200px\] {
-    width: 200px;
-  }
-  .w-\[260px\] {
-    width: 260px;
-  }
-  .w-\[280px\] {
-    width: 280px;
-  }
-  .w-\[300px\] {
-    width: 300px;
-  }
-  .w-\[3000px\] {
-    width: 3000px;
-  }
-  .w-\[px\] {
-    width: px;
-  }
   .w-full {
     width: 100%;
+  }
+  .max-w-4xl {
+    max-width: var(--container-4xl);
   }
   .border-collapse {
     border-collapse: collapse;
@@ -301,6 +294,9 @@
   }
   .justify-center {
     justify-content: center;
+  }
+  .justify-end {
+    justify-content: flex-end;
   }
   .justify-start {
     justify-content: flex-start;
@@ -429,9 +425,6 @@
   .bg-emerald-700 {
     background-color: var(--color-emerald-700);
   }
-  .bg-red-800 {
-    background-color: var(--color-red-800);
-  }
   .bg-white {
     background-color: var(--color-white);
   }
@@ -453,8 +446,8 @@
   .px-6 {
     padding-inline: calc(var(--spacing) * 6);
   }
-  .px-36 {
-    padding-inline: calc(var(--spacing) * 36);
+  .px-8 {
+    padding-inline: calc(var(--spacing) * 8);
   }
   .py-1 {
     padding-block: calc(var(--spacing) * 1);
@@ -486,14 +479,17 @@
   .pr-2 {
     padding-right: calc(var(--spacing) * 2);
   }
-  .pr-14 {
-    padding-right: calc(var(--spacing) * 14);
+  .pr-12 {
+    padding-right: calc(var(--spacing) * 12);
   }
-  .pr-21 {
-    padding-right: calc(var(--spacing) * 21);
+  .pr-16 {
+    padding-right: calc(var(--spacing) * 16);
   }
-  .pr-26 {
-    padding-right: calc(var(--spacing) * 26);
+  .pr-19 {
+    padding-right: calc(var(--spacing) * 19);
+  }
+  .pr-24 {
+    padding-right: calc(var(--spacing) * 24);
   }
   .pb-2 {
     padding-bottom: calc(var(--spacing) * 2);
@@ -512,9 +508,6 @@
   }
   .pl-17 {
     padding-left: calc(var(--spacing) * 17);
-  }
-  .pl-164 {
-    padding-left: calc(var(--spacing) * 164);
   }
   .text-left {
     text-align: left;
@@ -639,11 +632,6 @@
     outline-style: var(--tw-outline-style);
     outline-width: 1px;
   }
-  .md\:block {
-    @media (width >= 48rem) {
-      display: block;
-    }
-  }
   .md\:flex {
     @media (width >= 48rem) {
       display: flex;
@@ -652,11 +640,6 @@
   .md\:hidden {
     @media (width >= 48rem) {
       display: none;
-    }
-  }
-  .md\:w-full {
-    @media (width >= 48rem) {
-      width: 100%;
     }
   }
   .md\:grid-cols-2 {
@@ -698,9 +681,9 @@
       padding-inline: calc(var(--spacing) * 36);
     }
   }
-  .md\:pr-10 {
+  .md\:pr-6 {
     @media (width >= 48rem) {
-      padding-right: calc(var(--spacing) * 10);
+      padding-right: calc(var(--spacing) * 6);
     }
   }
   .md\:pb-8 {
