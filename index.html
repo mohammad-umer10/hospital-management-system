@@ -128,7 +128,7 @@
                         </div>
                     </div>
                     <!-- Toggle Buttons for mobile -->
-                    <div class="flex justify-between md:hidden py-6">
+                    <div id="viewToggle" class="flex justify-between md:hidden py-6">
                         <button id="tableViewBtn" class="flex items-center bg-[#5F8D4E] px-2 py-2 rounded-lg text-[#FFFFFF] text-[12px] font-medium">
                             Table View
                         </button>
@@ -137,7 +137,7 @@
                         </button>
                     </div>
                     <!-- end Toggle Buttons for mobile -->
-                    <div id="tableContainer" class="hidden md:block md:w-full w-[280px] overflow-x-auto">
+                    <div id="tableContainer" class="w-full overflow-x-auto">
                         <table class="w-full border-collapse">
                             <thead class="bg-[#FAFAFA] h-10 rounded-lg">
                                 <tr class="text-left">
@@ -515,18 +515,42 @@
         </div>
         <!-- js for table and card -->
         <script>
-            const tableBtn = document.getElementById('tableViewBtn'),
-            cardBtn = document.getElementById('cardViewBtn'),
-            table = document.getElementById('tableContainer'),
-            card = document.getElementById('cardContainer');
-            const show = view => {
-            table.classList.toggle('hidden', view !== 'table');
-            card.classList.toggle('hidden', view !== 'card');
-            localStorage.setItem('viewMode', view);
+            const tableBtn = document.getElementById('tableViewBtn');
+            const cardBtn = document.getElementById('cardViewBtn');
+            const table = document.getElementById('tableContainer');
+            const card = document.getElementById('cardContainer');
+            const viewToggle = document.getElementById('viewToggle');
+
+            const applyViewForMobile = (view) => {
+                table.classList.toggle('hidden', view !== 'table');
+                card.classList.toggle('hidden', view !== 'card');
+                localStorage.setItem('viewMode', view);
             };
-            show(localStorage.getItem('viewMode') || 'card');
-            tableBtn.onclick = () => show('table');
-            cardBtn.onclick = () => show('card');
+
+            const applyResponsiveLayout = () => {
+                const isDesktop = window.innerWidth >= 768; // Tailwind md breakpoint
+
+                if (isDesktop) {
+                    // Desktop: show table, hide cards, hide toggle buttons
+                    table.classList.remove('hidden');
+                    card.classList.add('hidden');
+                    if (viewToggle) viewToggle.classList.add('hidden');
+                } else {
+                    // Mobile: show toggle buttons and restore last view (default: card)
+                    if (viewToggle) viewToggle.classList.remove('hidden');
+                    const savedView = localStorage.getItem('viewMode') || 'card';
+                    applyViewForMobile(savedView);
+                }
+            };
+
+            if (tableBtn && cardBtn && table && card) {
+                tableBtn.onclick = () => applyViewForMobile('table');
+                cardBtn.onclick = () => applyViewForMobile('card');
+            }
+
+            // Initial layout and on resize
+            window.addEventListener('load', applyResponsiveLayout);
+            window.addEventListener('resize', applyResponsiveLayout);
         </script>
         <!-- end js for table and card -->
         <!-- header js -->
